@@ -82,7 +82,14 @@ ID3D11Buffer* ConstantBufferD3D11::GetBuffer() const
 	return this->buffer.Get();
 }
 
-void ConstantBufferD3D11::UpdateBuffer(ID3D11DeviceContext* context, void* data)
+void ConstantBufferD3D11::UpdateBuffer(ID3D11DeviceContext* context, void* data) //kopierar CPU-data till GPU-minnet som ligger i constantbuffern?
 {
+	D3D11_MAPPED_SUBRESOURCE mappedResource; //kommer fyllas med info
+	ZeroMemory(&mappedResource, sizeof(D3D11_MAPPED_SUBRESOURCE));
+
+	context->Map(this->buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+
+	memcpy(mappedResource.pData, data, this->bufferSize);
+	context->Unmap(this->buffer.Get(), 0);
 	//memcpy?
 }
