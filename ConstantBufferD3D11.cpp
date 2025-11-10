@@ -40,7 +40,8 @@ ConstantBufferD3D11& ConstantBufferD3D11::operator=(ConstantBufferD3D11&& other)
 	//check if this object(our object) is equal to the other object
 	if (this != &other) {
 		this->buffer = std::move(other.buffer); //we transfer ownership of the buffer from other to our object, do we need this?
-
+		this->bufferSize = other.bufferSize;
+		other.bufferSize = 0; //destroyed?
 	}
 }
 
