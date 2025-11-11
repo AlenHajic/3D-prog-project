@@ -26,3 +26,4 @@ public:
 
 	void UpdateBuffer(ID3D11DeviceContext* context, void* data);
 };
+

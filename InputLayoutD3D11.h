@@ -2,15 +2,18 @@
 
 #include <string>
 #include <vector>
-
+#include <wrl/client.h>
+#include <iostream>
 #include <d3d11_4.h>
+
+using Microsoft::WRL::ComPtr;
 
 class InputLayoutD3D11
 {
 private:
 	std::vector<std::string> semanticNames; // Needed to store the semantic names of the element descs
 	std::vector<D3D11_INPUT_ELEMENT_DESC> elements;
-	ID3D11InputLayout* inputLayout = nullptr;
+	ComPtr<ID3D11InputLayout> inputLayout = nullptr;
 
 public:
 	InputLayoutD3D11() = default;

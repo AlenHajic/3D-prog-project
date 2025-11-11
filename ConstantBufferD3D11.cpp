@@ -22,7 +22,6 @@ ConstantBufferD3D11::ConstantBufferD3D11(ID3D11Device* device, size_t byteSize, 
 	HRESULT hr = device->CreateBuffer(&bufferDesc, &data, &this->buffer); //do we need to account for intialdata to be nullptr? Same for buffer
 	if (FAILED(hr))
 	{
-		std::cerr << "Error creating constant buffer! (VS)" << std::endl;
 		throw::std::runtime_error("failed to create constantbuffer");
 	}
 }
@@ -67,7 +66,6 @@ void ConstantBufferD3D11::Initialize(ID3D11Device* device, size_t byteSize, void
 	HRESULT hr = device->CreateBuffer(&bufferDesc, &data, &this->buffer);
 	if (FAILED(hr))
 	{
-		std::cerr << "Error creating constant buffer! (VS)" << std::endl;
 		throw::std::runtime_error("failed to create constantbuffer");
 	}
 }
