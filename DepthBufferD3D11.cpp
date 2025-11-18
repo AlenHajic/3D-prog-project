@@ -9,6 +9,8 @@ DepthBufferD3D11::~DepthBufferD3D11() {}
 
 void DepthBufferD3D11::Initialize(ID3D11Device* device, UINT width, UINT height, bool hasSRV, UINT arraySize)
 {
+	if (!device) throw::std::runtime_error("DepthBuffer Initialize - device null");
+
 	D3D11_TEXTURE2D_DESC textureDesc;
 	textureDesc.Width = width;
 	textureDesc.Height = height;

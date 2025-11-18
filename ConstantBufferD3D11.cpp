@@ -2,6 +2,8 @@
 
 ConstantBufferD3D11::ConstantBufferD3D11(ID3D11Device* device, size_t byteSize, void* initialData) : bufferSize(byteSize)
 {
+	if (!device) throw::std::runtime_error("Constantbuffer constructor - device null");
+	if (!initialData) throw::std::runtime_error("DepthBuffer constructor - initialData null");
 	//fill in desc
 	D3D11_BUFFER_DESC bufferDesc = {
 		bufferDesc.ByteWidth = static_cast<UINT>(byteSize), //byter på ett säkert sätt från size_t till UINT
@@ -42,10 +44,15 @@ ConstantBufferD3D11& ConstantBufferD3D11::operator=(ConstantBufferD3D11&& other)
 		this->bufferSize = other.bufferSize;
 		other.bufferSize = 0; //destroyed?
 	}
+
+	return *this; //derefer to return actually value not memeory
 }
 
 void ConstantBufferD3D11::Initialize(ID3D11Device* device, size_t byteSize, void* initialData)
 {
+	if (!device) throw::std::runtime_error("Constantbuffer initialize - device null");
+	if (!initialData) throw::std::runtime_error("DepthBuffer Initialize - initialData null");
+
 	//fill in desc
 	D3D11_BUFFER_DESC bufferDesc = {
 		bufferDesc.ByteWidth = static_cast<UINT>(byteSize), //byter på ett säkert sätt från size_t till UINT
@@ -82,6 +89,8 @@ ID3D11Buffer* ConstantBufferD3D11::GetBuffer() const
 
 void ConstantBufferD3D11::UpdateBuffer(ID3D11DeviceContext* context, void* data) //kopierar CPU-data till GPU-minnet som ligger i constantbuffern?
 {
+	if (!context) throw::std::runtime_error("Constantbuffer UpdateBuffer - context null");
+	
 	D3D11_MAPPED_SUBRESOURCE mappedResource; //kommer fyllas med info
 	ZeroMemory(&mappedResource, sizeof(D3D11_MAPPED_SUBRESOURCE));
 
