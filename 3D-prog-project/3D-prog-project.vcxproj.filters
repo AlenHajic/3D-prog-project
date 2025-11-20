@@ -57,6 +57,9 @@
     <ClInclude Include="..\VertexBufferD3D11.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\WindowHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ConstantBufferD3D11.cpp">
@@ -68,7 +71,13 @@
     <ClCompile Include="..\InputLayoutD3D11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\RenderTargetD3D11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\WindowHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
